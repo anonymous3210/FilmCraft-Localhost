@@ -6,7 +6,7 @@ set -Eeuo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 APP_VERSION="0.8.0"
-ZIP_NAME="filmcraft-web-${APP_VERSION}.zip"
+ZIP_NAME="filmcraft-web-${APP_VERSION}-webgl-fallback.zip"
 TOP_DIR="filmcraft-web-${APP_VERSION}"
 MODE="auto"
 ZIP_ARG=""
@@ -14,7 +14,7 @@ ZIP_ARG=""
 usage() {
   cat <<'HELP'
 Uso:
-  bash filmcraft-termux-x11.sh [--auto|--x11|--android] [caminho/filmcraft-web-0.8.0.zip]
+  bash instalar-filmcraft-termux.sh [--auto|--x11|--android] [caminho/filmcraft-web-0.8.0-webgl-fallback.zip]
 
 --auto     Usa um navegador X11 se já estiver disponível; senão, o navegador Android.
 --x11      Exige Termux:X11 e Chromium/Firefox disponíveis no ambiente gráfico.
@@ -25,7 +25,7 @@ Renderer:
 Porta:
   FILMCRAFT_PORT=8765 (padrão)
 
-Se nenhum ZIP for informado/encontrado, o release v0.8.0 é baixado automaticamente.
+Se nenhum ZIP for informado/encontrado, o pacote v0.8.0 com fallback WebGL2 é baixado automaticamente.
 O servidor só escuta em localhost. Ctrl+C encerra o servidor.
 HELP
 }
@@ -67,7 +67,7 @@ if [[ -z "$ZIP_PATH" ]]; then
   mkdir -p "$(dirname -- "$ZIP_PATH")"
   if [[ ! -s "$ZIP_PATH" ]]; then
     printf 'Baixando FilmCraft v%s automaticamente...\n' "$APP_VERSION"
-    python3 - "$ZIP_PATH" "https://github.com/storytold/filmcraft/releases/download/v${APP_VERSION}/${ZIP_NAME}" <<'PY'
+    python3 - "$ZIP_PATH" "https://raw.githubusercontent.com/anonymous3210/FilmCraft-Localhost/main/${ZIP_NAME}" <<'PY'
 import os, shutil, sys, urllib.request, zipfile
 
 destination, url = sys.argv[1:]

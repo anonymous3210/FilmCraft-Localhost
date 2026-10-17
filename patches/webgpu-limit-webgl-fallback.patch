@@ -1,0 +1,13 @@
+--- a/apps/filmcraft-web/web/index.html
++++ b/apps/filmcraft-web/web/index.html
+@@ -80,8 +80,8 @@
+     } catch (e) {
+       const text = String(e && e.stack || e);
+       window.filmcraftLoad.error = String(e);
+-      // WebGPU was found but could not be started: try again on WebGL2 (once)
+-      if (!params.has("webgl") && !params.has("cpu") && /wgpu|webgpu|requestDevice|requestAdapter|GPUDevice|surface/i.test(text)) {
++      // WebGPU was found but could not be started, including a rejected adapter limit: try WebGL2 once.
++      if (!params.has("webgl") && !params.has("cpu") && /wgpu|webgpu|requestDevice|requestAdapter|GPUDevice|surface|max_texture_dimension_2d|better than allowed/i.test(text)) {
+         params.set("webgl", "");
+         location.replace(location.pathname + "?" + params.toString().replace(/=(&|$)/g, "$1") + location.hash);
+       } else {

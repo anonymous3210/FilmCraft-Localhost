@@ -19,17 +19,18 @@ Instalador e pacote para executar localmente no Termux a versão web **FilmCraft
    bash ~/storage/downloads/instalar-filmcraft-termux.sh
    ```
 
-O script instala `python` e `unzip` pelo gerenciador de pacotes do Termux se estiverem faltando. Se o ZIP não estiver junto do script nem nas pastas usuais, baixa automaticamente o release oficial v0.8.0, extrai os arquivos, inicia o servidor local e tenta abrir o navegador Android. Não é necessário baixar ou extrair o ZIP manualmente.
+O script instala `python` e `unzip` pelo gerenciador de pacotes do Termux se estiverem faltando. Se o pacote corrigido não estiver junto do script nem nas pastas usuais, ele baixa automaticamente `filmcraft-web-0.8.0-webgl-fallback.zip`, extrai os arquivos e inicia o servidor local. O pacote tenta WebGL2 automaticamente se a inicialização WebGPU falhar por um limite de textura rejeitado. Não é necessário baixar ou extrair o ZIP manualmente.
 
 O servidor escuta apenas em `localhost` no próprio aparelho. Mantenha o Termux aberto enquanto usa o app; pressione `Ctrl+C` para encerrar.
 
 ## Downloads incluídos
 
 - `instalar-filmcraft-termux.sh` — instalador/launcher automático do Termux.
-- `filmcraft-web-0.8.0.zip` — pacote web v0.8.0, disponibilizado também separadamente.
+- `filmcraft-web-0.8.0-webgl-fallback.zip` — pacote recomendado; tenta WebGL2 automaticamente se a inicialização WebGPU falhar por limite de textura.
+- `filmcraft-web-0.8.0.zip` — ZIP original do release upstream v0.8.0.
 - `captura-interface.webp` — captura da interface do FilmCraft.
 
-A fonte do ZIP é o [release v0.8.0 de storytold/filmcraft](https://github.com/storytold/filmcraft/releases/tag/v0.8.0).
+O pacote corrigido é baseado no [release v0.8.0 de storytold/filmcraft](https://github.com/storytold/filmcraft/releases/tag/v0.8.0). O ajuste adicional é reproduzível no arquivo `patches/webgpu-limit-webgl-fallback.patch`.
 
 ## Termux:X11 (opcional)
 
