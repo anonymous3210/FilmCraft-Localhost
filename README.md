@@ -2,6 +2,8 @@
 
 Instalador e pacote para executar localmente no Termux a versão web **FilmCraft 0.8.0**. Este repositório é um empacotamento comunitário e **não é oficial nem afiliado ao projeto FilmCraft**.
 
+![Interface do FilmCraft](./captura-interface.webp)
+
 ## Instalação simples no Android/Termux
 
 1. Baixe `instalar-filmcraft-termux.sh` deste repositório para a pasta **Downloads** do Android.
